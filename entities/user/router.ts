@@ -1,5 +1,5 @@
 import express from 'express';
-import {createUser, getUsers, userLogIn} from './controller.js';
+import {createUser, getUsers, searchUserById, userLogIn} from './controller.js';
 import { auth } from '../../core/mdw.js';
 
 const router = express.Router();
@@ -37,5 +37,16 @@ router.get('/', auth, async (req, res, next) => {
     }
   });
 
+router.get('/:id', auth,async(req,res,next)=>{
+
+try {
+    const user = await searchUserById(req.params.id, req.token);
+    if (!user) return next(new Error('NO_USER'));
+    return res.json(user);
+} catch (e) {
+    next(e);
+}
+
+});
 
 export default router;

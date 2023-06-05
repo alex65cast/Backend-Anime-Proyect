@@ -30,3 +30,14 @@ export const getUsers = async (token, params) => {
     }
     throw new Error('NOT_AUTHORIZED');
   };
+
+  export const searchUserById = async(id, token)=>{
+    if(token.rol === USER_ROLS.CLIENT && token.id === id){
+        const user = await Users.findOne({_id:id});
+        return user
+    } else if(token.rol === USER_ROLS.ADMIN){
+        const user = await Users.findOne({_id:id});
+        return user
+    }
+    throw new Error('NOT_AUTHORIZED');
+};

@@ -1,8 +1,6 @@
-# CLÍNICA DENTAL
+# Backend lista de Animes
 
-Este es el back-end del sistema basado en la gestión de una clínica dental.
-
-<a href="https://backendclinicadental-production.up.railway.app/">Enlace del deploy</a>
+Este es el back-end del proyecto final
 
 **ESTE ES UN SERVIDOR NO VISUAL**
 ## Contenido

@@ -1,6 +1,6 @@
 import express from 'express';
 // import { auth } from '../../core/mdw.js';
-import {userLogIn} from './controller.js';
+import {createUser, userLogIn} from './controller.js';
 
 const router = express.Router();
 
@@ -16,5 +16,15 @@ router.post('/login',async (req, res, next) => {
    
 });
 
+router.post('/',async (req, res, next) => {
+
+    try {
+        const newUser = await createUser(req.body);
+        return res.json(newUser);
+    } catch (error) {
+        next(error);
+    }
+
+});
 
 export default router;

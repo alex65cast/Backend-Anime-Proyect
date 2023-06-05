@@ -10,3 +10,10 @@ export const userLogIn = async(user) => {
     const token = jwt.sign({email: user.email, id: findUser._id, rol: findUser.rol, date: findUser.date, number: findUser.phoneNumer}, config.SECRET)
     return token
 }
+
+
+export const createUser = async(newUser) => {
+    newUser.password = await bcrypt.hash(newUser.password, 1);
+    const user =  new Users(newUser);
+    return await user.save();
+};

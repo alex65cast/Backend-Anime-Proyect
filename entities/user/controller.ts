@@ -17,3 +17,16 @@ export const createUser = async(newUser) => {
     const user =  new Users(newUser);
     return await user.save();
 };
+
+export const getUsers = async (token, params) => {
+    if (token.rol === USER_ROLS.ADMIN) {
+      if (params) {
+        // Realizar búsqueda por nombre si se proporciona
+        return await Users.find({ name: params});
+      } else {
+        // Obtener todos los usuarios si no se proporciona un nombre
+        return await Users.find({});
+      }
+    }
+    throw new Error('NOT_AUTHORIZED');
+  };

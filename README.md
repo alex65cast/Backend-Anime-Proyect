@@ -82,17 +82,6 @@ git push origin "your_branch"
 ```
 ## Idea del proyecto
 
-Este proyecto de API para una clínica dental se enfocó en crear usuarios y dentistas, estableciendo relaciones entre ellos mediante citas programadas por los dentistas.
-
-Uno de los objetivos clave fue la gestión de permisos y sistemas de autenticación para garantizar un uso adecuado de la plataforma. 
-
-El sistema cuenta con un proceso de inicio de sesión que proporciona un token para acceder a los diferentes servicios, tanto para los usuarios como para los dentistas.
-
-Además, se ha implementado un sistema de administración, que permite a un usuario con permisos especiales realizar cualquier acción sin restricciones, utilizando su propio token de autenticación.
-
-Antes de acceder a cada servicio, se lleva a cabo una validación de permisos para garantizar que cada usuario tenga acceso solo a lo que le corresponde según su rol en la clínica.
-
-
 ### Autor
 
-El desarrollo ha sido realizado por [Héctor Ginory](https://github.com/HectorGinory) y [Alejandro Castejón](https://github.com/alex65cast)
+El desarrollo ha sido realizado por [Alejandro Castejón](https://github.com/alex65cast)

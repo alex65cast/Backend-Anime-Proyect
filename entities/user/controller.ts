@@ -41,3 +41,17 @@ export const getUsers = async (token, params) => {
     }
     throw new Error('NOT_AUTHORIZED');
 };
+
+export const updateUser = async(id, body, token) => {
+    if((token.rol === USER_ROLS.CLIENT) && id === token.id) {
+        body.rol = token.rol
+        if(body.password) body.password = await bcrypt.hash(body.password, 1)
+        const userUpdate = await Users.findOneAndUpdate({_id:id},body,{returnDocument: 'after'});
+        if(!userUpdate) throw new Error('NO_USER');
+        return userUpdate;
+    } else if(token.rol === USER_ROLS.ADMIN) {
+        const userUpdate = await Users.findOneAndUpdate({_id:id},body,{returnDocument: 'after'});
+        return userUpdate;
+    } 
+    throw new Error('NOT_AUTHORIZED')
+};

@@ -1,5 +1,5 @@
 import express from 'express';
-import {createUser, getUsers, searchUserById, userLogIn} from './controller.js';
+import {createUser, getUsers, searchUserById, updateUser, userLogIn} from './controller.js';
 import { auth } from '../../core/mdw.js';
 
 const router = express.Router();
@@ -47,6 +47,16 @@ try {
     next(e);
 }
 
+});
+
+router.put('/:id', auth,async (req, res, next) => {
+    
+    try {
+        const user = await updateUser(req.params.id, req.body, req.token);
+        return res.json(user);
+    } catch (e) {
+        next(e);
+    }
 });
 
 export default router;

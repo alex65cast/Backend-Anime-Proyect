@@ -14,6 +14,22 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
         type:Number,
         required: true
     },
+    rank:{
+        type:Number,
+        required:true
+    },
+    title:{
+        type:String,
+        required:true
+    },
+    imageUrl: {
+        type:String,
+        required: true
+    },
+    season: {
+        type:String,
+        required:true
+    },
     dateOfCreation: {
         type: Date,
         default: Date.now

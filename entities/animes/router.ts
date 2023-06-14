@@ -1,8 +1,7 @@
 import express from 'express';
 import { auth } from '../../core/mdw.js';
-import { getAnimes } from './controller.js';
+import { createAnimeList, getAnimes } from './controller.js';
 const router = express.Router();
-
 
 router.get("/", auth ,async(req, res, next) => {
     try {
@@ -10,4 +9,14 @@ router.get("/", auth ,async(req, res, next) => {
     } catch(e) {
         next(e)
     }
+});
+
+router.post("/", auth ,async (req, res, next) => {
+    try {
+        return res.json(await createAnimeList(req.body, req.token));
+    } catch (error) {
+        next(error);
+    }
 })
+
+export default router;

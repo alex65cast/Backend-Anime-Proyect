@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import routerUser from './entities/user/router.js';
+import routerAnimes from './entities/animes/router.js'
 // import routerAnime from './entities/animes/router.js';
 import config from './config.js';
 import cors from 'cors'
@@ -46,6 +47,6 @@ let corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use('/user', routerUser);
-// app.use('/anime', routerAnime);
+app.use('/anime', routerAnimes);
 app.use(handlerError);
 app.listen(config.PORT, () => console.log(`Server up in port ${config.PORT}`));

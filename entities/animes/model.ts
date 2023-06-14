@@ -11,7 +11,7 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
         required: true
     },
     animeID: {
-        type:String,
+        type:Number,
         required: true
     },
     dateOfCreation: {

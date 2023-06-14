@@ -3,8 +3,8 @@ import AnimeList from './model.js';
 
 export const getAnimes = async(data, token) =>{
     if (token) {
-        return await AnimeList.find({ userList: token.id, activeQuote: true })
-          .populate([{ path: 'userList', select: ['name', 'email'] }]).sort({dateOfCreation: -1})
+        return await AnimeList.find({ userList: token.id, activeAnime: true })
+          .populate([{ path: 'userList', select: ['name', 'email'] }]);
       }
       else{
         throw new Error('NO_TOKEN')

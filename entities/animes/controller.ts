@@ -22,3 +22,17 @@ export const createAnimeList = async(data, token)=>{
     await animeInfo.save()
     return animeInfo
 }
+
+export const modifiAnime = async(idAnimeList, data, token) =>{
+    if(!idAnimeList || !data || !token) throw new Error("INFO_LEFT")
+    let animeInfo = await AnimeList.findOne({_id: idAnimeList})
+    if(!animeInfo) throw new Error("NO_animeInfo")
+    if(token.rol === USER_ROLS.ADMIN || ((token.rol === USER_ROLS.CLIENT) && (animeInfo.userList?.toString() === token.id))) {
+        data.updateAt = new Date()
+        // if(data.activeAnime === true) data.deletedAt = null
+        animeInfo = await AnimeList.findOneAndUpdate({_id: idAnimeList}, data, {new: true}).populate([{path: 'userList', select: ['name', 'email']}])
+        return animeInfo
+    } else {
+        throw new Error("NOT_AUTHORIZED")
+    }
+}

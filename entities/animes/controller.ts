@@ -1,10 +1,11 @@
 import Users, { USER_ROLS } from '../user/model.js';
 import AnimeList from './model.js';
+import { STATUS } from '../estadoAnime/model.js';
 
 export const getAnimes = async(data, token) =>{
     if (token) {
         return await AnimeList.find({ userList: token.id, activeAnime: true })
-          .populate({ path: 'userList', select: ['name', 'email'] });
+          .populate([{ path: 'userList', select: ['name', 'email'] },{path:"statusList", select:["completed","planing"]}]);
       }
       else{
         throw new Error('NO_TOKEN')
@@ -17,6 +18,12 @@ export const createAnimeList = async (data, token) => {
     if (token.rol === USER_ROLS.CLIENT || token.rol === USER_ROLS.ADMIN) {
       if (!data.userList) {
         data.userList = token.id;
+      }
+      if(data.statusList == STATUS.COMPLETED){
+        data.statusList = STATUS.COMPLETED
+      }
+      else if (data.statusList == STATUS.PLANING){
+        data.status = STATUS.PLANING
       }
     }
   

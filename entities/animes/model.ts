@@ -6,6 +6,11 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
         ref: 'Users',
         required: true
     },
+    statusList:{
+        type:String,
+        ref: "EstusAnime",
+        required: true
+    },
     ratingUser: {
         type: String,
         required: false

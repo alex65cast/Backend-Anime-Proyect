@@ -11,17 +11,21 @@ export const getAnimes = async(data, token) =>{
       }
 }
 
-export const createAnimeList = async(data, token)=>{
-    if(!data.animeID) throw new Error("INFO_LEFT")
-    if(token.rol === USER_ROLS.CLIENT) {
-        if(!data.userList) throw new Error("INFO_LEFT")
-        data.userList = token.id
+export const createAnimeList = async (data, token) => {
+    if (!data.animeID) throw new Error("INFO_LEFT");
+  
+    if (token.rol === USER_ROLS.CLIENT || token.rol === USER_ROLS.ADMIN) {
+      if (!data.userList) {
+        data.userList = token.id;
+      }
     }
-    if(token.rol === USER_ROLS.ADMIN && (!data.userList)) throw new Error("INFO_LEFT")
-    let animeInfo = new AnimeList(data)
-    await animeInfo.save()
-    return animeInfo
-}
+  
+    if (token.rol === USER_ROLS.ADMIN && !data.userList) throw new Error("INFO_LEFT");
+  
+    let animeInfo = new AnimeList(data);
+    await animeInfo.save();
+    return animeInfo;
+  };
 
 export const modifiAnime = async(idAnimeList, data, token) =>{
     if(!idAnimeList || !data || !token) throw new Error("INFO_LEFT")

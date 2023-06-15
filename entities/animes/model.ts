@@ -8,7 +8,7 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
     },
     ratingUser: {
         type: String,
-        required: true
+        required: false
     },
     animeID: {
         type:Number,
@@ -28,7 +28,7 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
     },
     season: {
         type:String,
-        required:true
+        required:false
     },
     dateOfCreation: {
         type: Date,

@@ -7,7 +7,7 @@ const AnimeList = mongoose.model('AnimeList', new mongoose.Schema({
         required: true
     },
     statusList:{
-        type:String,
+        type:mongoose.Types.ObjectId,
         ref: "EstusAnime",
         required: true
     },

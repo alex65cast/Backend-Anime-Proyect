@@ -1,20 +1,16 @@
 import mongoose from "mongoose";
 
 
-export const STATUS = {
-    COMPLETED: "Completed",
-    PLANING: "Plan to watch"
-}
+// export const STATUS = {
+//     COMPLETED: "Completed",
+//     PLANING: "Plan to watch"
+// }
 
 const EstusAnime = mongoose.model('EstusAnime',new mongoose.Schema({
-    completed:{
+    state:{
         type:String,
-        default: STATUS.COMPLETED
-    },
-    planing:{
-        type:String,
-        default: STATUS.PLANING
-    },
+        required:true
+    }
 
     // rol: {
     //     type: String,

@@ -1,6 +1,6 @@
 import express from 'express';
 import { auth } from '../../core/mdw.js';
-import { getStatus } from './controller.js';
+import { createStatus, getStatus } from './controller.js';
 const router = express.Router();
 
 router.get("/", auth ,async(req, res, next) => {
@@ -10,5 +10,13 @@ router.get("/", auth ,async(req, res, next) => {
         next(e)
     }
 });
+
+router.post("/", auth ,async (req, res, next) => {
+    try {
+        return res.json(await createStatus(req.body, req.token));
+    } catch (error) {
+        next(error);
+    }
+})
 
 export default router

@@ -1,9 +1,2 @@
-<<<<<<< HEAD
-dist/
 node_modules/
 .env
-=======
-node_modules
-.env
-dist
->>>>>>> origin/hectordev

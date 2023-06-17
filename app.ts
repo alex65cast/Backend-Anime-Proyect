@@ -31,6 +31,9 @@ const handlerError = (err:Error,req,res,next)=>{
     if(err.message === 'INFO_LEFT'){
       return res.status(401).json({code:'INFO_LEFT',message:"There's info left to do this action"});
     }
+    if(err.message === 'ANIME_ALREADY_EXISTS'){
+      return res.status(401).json({code:'ANIME_ALREADY_EXISTS',message:"This anime already exists"});
+    }
     
     return res.status(500).json({code:'SERVER_ERROR', message: err.message});
     

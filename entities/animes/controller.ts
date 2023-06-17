@@ -21,6 +21,13 @@ export const createAnimeList = async (data, token) => {
         data.userList = token.id;
       }
     }
+    const existingAnime = await AnimeList.findOne({
+      userList: token.id,
+      animeID: data.animeID
+    });
+    if (existingAnime) {
+      throw new Error("ANIME_ALREADY_EXISTS");
+    }
   
     if (token.rol === USER_ROLS.ADMIN && !data.userList) throw new Error("INFO_LEFT");
   

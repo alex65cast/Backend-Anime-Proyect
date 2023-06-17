@@ -11,6 +11,7 @@ router.get("/", auth ,async(req, res, next) => {
     }
 });
 
+
 router.post("/", auth ,async (req, res, next) => {
     try {
         return res.json(await createAnimeList(req.body, req.token));

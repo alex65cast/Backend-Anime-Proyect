@@ -1,10 +1,18 @@
 import express from 'express';
 import { auth } from '../../core/mdw.js';
-import { createAnimeList, getAnimes, modifiAnime } from './controller.js';
+import { createAnimeList, getAnimes, getAnimesCompleted, modifiAnime } from './controller.js';
 const router = express.Router();
 router.get("/", auth, async (req, res, next) => {
     try {
         return res.json(await getAnimes(req.query, req.token));
+    }
+    catch (e) {
+        next(e);
+    }
+});
+router.get("/completed", auth, async (req, res, next) => {
+    try {
+        return res.json(await getAnimesCompleted(req.query, req.token));
     }
     catch (e) {
         next(e);

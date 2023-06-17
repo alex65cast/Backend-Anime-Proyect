@@ -12,6 +12,7 @@ export const getAnimes = async(data, token) =>{
       }
 }
 
+
 export const createAnimeList = async (data, token) => {
     if (!data.animeID) throw new Error("INFO_LEFT");
   

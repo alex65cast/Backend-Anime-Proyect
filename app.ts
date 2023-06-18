@@ -15,6 +15,7 @@ mongoose.connect(config.DDBB!).then(()=>{
     console.log('Failed to connect database')
 })
 
+
 const handlerError = (err:Error,req,res,next)=>{
     if(err.message === 'NO_USER'){
       return res.status(401).json({code:'NO_USER',message:"This user don't exist"});

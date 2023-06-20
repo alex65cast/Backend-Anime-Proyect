@@ -41,6 +41,10 @@ const Users = mongoose.model('Users',new mongoose.Schema({
         type: String,
         default: USER_ROLS.CLIENT,
         enum: [USER_ROLS.CLIENT, USER_ROLS.ADMIN]
+    },
+    activeUser: {
+        type: Boolean,
+        default: true
     }
 }, { versionKey: false }));
 

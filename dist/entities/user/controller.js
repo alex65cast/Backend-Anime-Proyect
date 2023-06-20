@@ -8,7 +8,7 @@ export const userLogIn = async (user) => {
         throw new Error('NO_USER');
     if (!(await bcrypt.compare(user.password, findUser.password)))
         throw new Error('WRONG_PASSWORD');
-    const token = jwt.sign({ email: user.email, id: findUser._id, rol: findUser.rol, date: findUser.date, number: findUser.phoneNumer }, config.SECRET);
+    const token = jwt.sign({ email: user.email, id: findUser._id, rol: findUser.rol, date: findUser.date, number: findUser.phoneNumer, activeUser: findUser.activeUser }, config.SECRET);
     return token;
 };
 export const createUser = async (newUser) => {
@@ -20,11 +20,11 @@ export const getUsers = async (token, params) => {
     if (token.rol === USER_ROLS.ADMIN) {
         if (params) {
             // Realizar búsqueda por nombre si se proporciona
-            return await Users.find({ name: params });
+            return await Users.find({ name: params, activeUser: true });
         }
         else {
             // Obtener todos los usuarios si no se proporciona un nombre
-            return await Users.find({});
+            return await Users.find({ activeUser: true });
         }
     }
     throw new Error('NOT_AUTHORIZED');

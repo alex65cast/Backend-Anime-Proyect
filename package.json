@@ -7,6 +7,7 @@
   "scripts": {
     "start": "tsc && node -r dotenv-safe/config ./dist/app.js"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
